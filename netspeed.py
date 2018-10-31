@@ -38,14 +38,14 @@ def calculate_speed(net_card) :
 		# print(speed)
 		sys.stdout.write(' ' * 20 + '\r')
 		sys.stdout.flush()
-		print('Speed: {} Kb/s'.format(speed), end='\r', flush='True')
+		sys.stdout.write('Speed: {} Kb/s \r'.format(speed))
 
 
 def netSpeed():
 	text = os.popen('ifconfig').readlines()
 	net_cards = []
 
-	# find net card
+	# find all net cards
 	for line in text:
 		if 'flags=' in line:
 			tmp = line[0:line.index(': flags')]
@@ -54,10 +54,10 @@ def netSpeed():
 	n = 1
 	select_cards = ''
 	for net_card in net_cards:
-		select_cards += str(n) + ', ' + net_card + '\t'
+		select_cards += str(n) + ':' + net_card + '\t'
 		n = n + 1
 	
-	val = input("Select a net card you want ?  {} \n: ".format(select_cards))
+	val = input("Select the card you want oversee!  {} \n: ".format(select_cards))
 
 	calculate_speed(net_cards[int(val) - 1])
 
