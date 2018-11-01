@@ -23,6 +23,7 @@ def get_bytes(text, net_card):
 				download_bytes = get_download_bytes(line)
 				start = False
 				return int(download_bytes)
+	return 0
 
 
 def calculate_speed(net_card) :
@@ -30,7 +31,8 @@ def calculate_speed(net_card) :
 		text = os.popen('ifconfig').readlines()
 		old_bytes = get_bytes(text, net_card)
 		# print(old_bytes)
-		time.sleep(1)
+		time.sleep(0.5)
+		
 		text = os.popen('ifconfig').readlines()
 		new_bytes = get_bytes(text, net_card)
 		# print(new_bytes)
